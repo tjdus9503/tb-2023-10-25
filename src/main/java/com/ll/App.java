@@ -14,6 +14,7 @@ class App {
         this.lastQuotationId = 0;
         this.quotations = new ArrayList<>();
     }
+
     void run() {
         System.out.println("== 명령 앱 ==");
 
@@ -28,6 +29,8 @@ class App {
                 actionWrite();
             } else if (cmd.equals("목록")) {
                 actionList();
+            } else if (cmd.startsWith("삭제?")) {
+                actionRemove(cmd);
             }
         }
     }
@@ -59,5 +62,12 @@ class App {
             Quotation quotation = quotations.get(i);
             System.out.printf("%d / %s / %s\n", quotation.id, quotation.authorName, quotation.content);
         }
+    }
+
+    void actionRemove(String cmd) {
+        String idStr = cmd.replace("삭제?id=", "");
+        int id = Integer.parseInt(idStr);
+
+        System.out.printf("%d번 명언을 삭제합니다.\n", id);
     }
 }
