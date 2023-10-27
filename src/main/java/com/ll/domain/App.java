@@ -69,7 +69,7 @@ public class App {
 
         for (int i = quotations.size() - 1; i >= 0; i--) {
             Quotation quotation = quotations.get(i);
-            System.out.printf("%d / %s / %s\n", quotation.id, quotation.authorName, quotation.content);
+            System.out.printf("%d / %s / %s\n", quotation.getId(), quotation.getAuthorName(), quotation.getContent());
         }
     }
 
@@ -97,7 +97,7 @@ public class App {
         for (int i = 0; i < quotations.size(); i++) {
             Quotation quotation = quotations.get(i);
 
-            if (quotations.get(i).id == id) {
+            if (quotations.get(i).getId() == id) {
                 return i;
             }
         }
@@ -122,16 +122,16 @@ public class App {
 
         Quotation quotation = quotations.get(index);
 
-        System.out.printf("명언(기존) : %s\n", quotation.content);
+        System.out.printf("명언(기존) : %s\n", quotation.getContent());
         System.out.print("명언 : ");
         String content = scanner.nextLine();
 
-        System.out.printf("작가(기존) : %s\n", quotation.authorName);
+        System.out.printf("작가(기존) : %s\n", quotation.getAuthorName());
         System.out.print("작가 : ");
         String authorName = scanner.nextLine();
 
-        quotation.content = content;
-        quotation.authorName = authorName;
+        quotation.setContent(content);
+        quotation.setAuthorName(authorName);
 
         System.out.printf("%d번 명언이 수정되었습니다.\n", id);
     }
