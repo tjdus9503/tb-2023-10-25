@@ -1,13 +1,13 @@
-package com.ll;
+package com.ll.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class App {
-    Scanner scanner;
-    int lastQuotationId;
-    List<Quotation> quotations;
+public class App {
+    private Scanner scanner;
+    private int lastQuotationId;
+    private List<Quotation> quotations;
 
     public App() {
         this.scanner = new Scanner(System.in);
@@ -15,7 +15,7 @@ class App {
         this.quotations = new ArrayList<>();
     }
 
-    void run() {
+    public void run() {
         System.out.println("== 명령 앱 ==");
 
         while (true) {
@@ -73,7 +73,7 @@ class App {
         }
     }
 
-    void actionRemove(Rq rq) {
+    private void actionRemove(Rq rq) {
         int id = rq.getParamAsInt("id", 0);
 
         if (id == 0) {
@@ -81,7 +81,7 @@ class App {
             return; // 함수를 끝낸다.
         }
 
-        int index = getIndexOfQuotationById(id);
+        int index = findQuotationIndexById(id);
 
         if (index == -1) {
             System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
@@ -93,7 +93,7 @@ class App {
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 
-    int getIndexOfQuotationById(int id) {
+    private int findQuotationIndexById(int id) {
         for (int i = 0; i < quotations.size(); i++) {
             Quotation quotation = quotations.get(i);
 
@@ -105,7 +105,7 @@ class App {
         return -1;
     }
 
-    void actionModify(Rq rq) {
+    private void actionModify(Rq rq) {
         int id = rq.getParamAsInt("id", 0);
 
         if (id == 0) {
